@@ -26,12 +26,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-j@u#@=(801qxhi%op+8#%hd7)urkw6&^k(1$e*=st(&83mu5t6'
+SECRET_KEY = '*****'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','attendancemanager21.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1','*']
 
 
 # Application definition
@@ -149,9 +149,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATICFILES_STORAGE =  'django.contrib.staticfiles.storage.StaticFilesStorage' 
 
 cloudinary.config(
-    cloud_name = 'rlabs-developers-2020',
-    api_key = '197743557343862',
-    api_secret = '3eNv4wTWc85bF8ZC876nVLUSYaI'
+    cloud_name = '***',
+    api_key = '***',
+    api_secret = '*****'
 )
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' 
