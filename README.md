@@ -1,3 +1,5 @@
+<img title="old ui" align="right" src="https://github.com/David-code-hub/attendancemanager/assets/55393687/055a2265-3ed3-4a03-a01d-fa11da784d6f" width="300"/>
+
 ### Refactoring in process...🚀
 
 From vue options api(cdn version) > vue3 composition api
@@ -8,8 +10,4 @@ From vue options api(cdn version) > vue3 composition api
 - [ ] Add new UI
 - [ ] Refactor server api codebase
 - [ ] connect client and server
-
-
-
-![attendance_mock](https://user-images.githubusercontent.com/55393687/191476291-11a354a4-453c-41de-a33d-63926eb6187e.png)
 
