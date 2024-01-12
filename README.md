@@ -11,3 +11,8 @@ From vue options api(cdn version) > vue3 composition api
 - [ ] Refactor server api codebase
 - [ ] connect client and server
 
+### UI
+
+- [ ] navigation component
+- [ ] all public sessions page
+- [ ] create session > select type,date > participants
