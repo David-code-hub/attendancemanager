@@ -7,8 +7,8 @@ From vue options api(cdn version) > vue3 composition api
 #### List of todos 🌳
 
 - [x] seperate server and client
-- [ ] Add new UI
-- [ ] Refactor server api codebase
+- [ ] add new UI
+- [ ] refactor server api codebase
 - [ ] connect client and server
 
 ### UI
