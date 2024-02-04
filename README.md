@@ -12,7 +12,7 @@ From vue options api(cdn version) > vue3 composition api
 - [ ] connect client and server
 
 ### UI
-
+- [ ] signup & login
 - [ ] navigation component
 - [ ] all public sessions page
 - [ ] create session > select type,date > participants
