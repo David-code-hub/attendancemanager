@@ -1,8 +1,8 @@
 <template>
-  <div class="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+  <div class="flex h-screen min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-      <h2 class="text-md font-regular mt-10 text-center tracking-tight text-gray-600">Sign in to continue</h2>
-      <h2 class="mt-1 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Attendance Manager</h2>
+      <h2 class="text-md font-regular text-center tracking-tight text-gray-600">Sign in to continue</h2>
+      <h2 class="mt-0 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Attendance Manager</h2>
     </div>
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -28,6 +28,7 @@
 
         <div>
           <button type="submit" class="submit-button">Sign in</button>
+          <a href="https://github.com/David-code-hub/attendancemanager" target="_blank" class="my-3 block w-full rounded-lg border border-black px-3 py-2.5 text-center text-sm capitalize text-black hover:opacity-80">Github repo</a>
         </div>
       </form>
 
