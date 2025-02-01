@@ -8,7 +8,7 @@
     <div class="mt-7 sm:mx-auto sm:w-full sm:max-w-sm">
       <form class="space-y-6">
         <div>
-          <label for="email" class="block text-sm/6 font-medium text-gray-900">Email address</label>
+          <label for="email" class="block text-sm/6 font-medium text-gray-900">Username</label>
           <div class="mt-2">
             <input type="text" v-model="loginForm.username" name="email" id="email" autocomplete="email" required="true" class="input-field" />
           </div>
@@ -23,7 +23,7 @@
           </div>
         </div>
         <div>
-          <button type="submit" @click.prevent="handleUserLogin()" class="submit-button">
+          <button type="submit" @click.prevent="handleLogin(loginForm.username, loginForm.password)" class="submit-button">
             <Icon v-if="isLoading" name="svg-spinners:180-ring-with-bg" class="size-5" />
             <span v-else>Sign in</span>
           </button>
@@ -44,11 +44,11 @@ const loginForm = reactive({
   password: "",
 });
 
-const { state: userData, isLoading, execute: handleUserLogin_ } = handleLogin(loginForm.username, loginForm.password);
+const { state: userData, isLoading, execute: handleUserLogin } = handleLogin(loginForm.username, loginForm.password);
 
-const handleUserLogin = () => {
-  handleLogin(loginForm.username, loginForm.password).execute();
-};
+// const handleUserLogin = () => {
+//   handleLogin(loginForm.username, loginForm.password).execute();
+// };
 </script>
 
 <style scoped></style>
