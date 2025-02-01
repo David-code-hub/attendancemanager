@@ -27,7 +27,7 @@
             <Icon v-if="isLoading" name="svg-spinners:180-ring-with-bg" class="size-5" />
             <span v-else>Sign in</span>
           </button>
-          <a href="https://github.com/David-code-hub/attendancemanager" target="_blank" class="my-3 block w-full rounded-lg border border-black px-3 py-2.5 text-center text-sm capitalize text-black hover:opacity-80">Github repo</a>
+          <a href="https://github.com/David-code-hub/attendancemanager" target="_blank" class="my-3 block w-full rounded-lg border border-black px-3 py-2 text-center text-sm capitalize text-black hover:opacity-80">Github repo</a>
         </div>
       </form>
     </div>
@@ -35,7 +35,6 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from "vue";
 import { handleEndpoints } from "~/server/end-points";
 
 const { handleLogin } = handleEndpoints();
@@ -45,7 +44,11 @@ const loginForm = reactive({
   password: "",
 });
 
-const { state: userData, isLoading, execute: handleUserLogin } = handleLogin(loginForm.username, loginForm.password);
+const { state: userData, isLoading, execute: handleUserLogin_ } = handleLogin(loginForm.username, loginForm.password);
+
+const handleUserLogin = () => {
+  handleLogin(loginForm.username, loginForm.password).execute();
+};
 </script>
 
 <style scoped></style>
