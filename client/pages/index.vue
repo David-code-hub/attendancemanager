@@ -23,7 +23,7 @@
           </div>
         </div>
         <div>
-          <button type="submit" @click.prevent="handleLogin(loginForm.username, loginForm.password)" class="submit-button">
+          <button type="submit" @click.prevent="handleUserLogin()" class="submit-button">
             <Icon v-if="isLoading" name="svg-spinners:180-ring-with-bg" class="size-5" />
             <span v-else>Sign in</span>
           </button>
@@ -44,11 +44,11 @@ const loginForm = reactive({
   password: "",
 });
 
-const { state: userData, isLoading, execute: handleUserLogin } = handleLogin(loginForm.username, loginForm.password);
+const { state: userData, isLoading, execute: handleUserLogin_ } = handleLogin(loginForm.username, loginForm.password);
 
-// const handleUserLogin = () => {
-//   handleLogin(loginForm.username, loginForm.password).execute();
-// };
+const handleUserLogin = () => {
+  handleLogin(loginForm.username, loginForm.password).execute();
+};
 </script>
 
 <style scoped></style>
