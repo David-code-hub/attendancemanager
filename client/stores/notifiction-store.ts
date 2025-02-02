@@ -8,7 +8,6 @@ export const useNotificationStore = defineStore("notification", {
 
   actions: {
     showNotification(type: NotificationTypes, message: string, duration = 3000) {
-      console.log("showing message");
       this.notification = {
         type: type,
         message: message,

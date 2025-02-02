@@ -23,7 +23,7 @@
           </div>
         </div>
         <div>
-          <button type="submit" @click.prevent="handleUserLogin()" class="submit-button">
+          <button type="submit" @click.prevent="handleUserLogin" class="submit-button">
             <Icon v-if="isLoading" name="svg-spinners:180-ring-with-bg" class="size-5" />
             <span v-else>Sign in</span>
           </button>
@@ -37,17 +37,18 @@
 <script setup lang="ts">
 import { handleEndpoints } from "~/server/end-points";
 
+const isLoading = ref(false);
 const { handleLogin } = handleEndpoints();
-
 const loginForm = reactive({
   username: "",
   password: "",
 });
 
-const { state: userData, isLoading, execute: handleUserLogin_ } = handleLogin(loginForm.username, loginForm.password);
-
-const handleUserLogin = () => {
-  handleLogin(loginForm.username, loginForm.password).execute();
+const handleUserLogin = async () => {
+  const loginState = handleLogin(loginForm.username, loginForm.password);
+  isLoading.value = true;
+  await loginState.execute();
+  isLoading.value = loginState.isLoading.value;
 };
 </script>
 
