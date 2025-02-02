@@ -3,6 +3,6 @@
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
-    <AppNotificationHandler type="success" message="successfully" :show-message="true" />
+    <AppNotificationHandler />
   </div>
 </template>

@@ -1,8 +1,11 @@
 import { useNuxtApp } from "nuxt/app";
 import { useAsyncState } from "@vueuse/core";
 import type { AxiosInstance } from "axios";
+import { useNotificationStore } from "~/stores/notifiction-store";
 
 export const handleEndpoints = () => {
+  const notifictionStore = useNotificationStore();
+
   const { $api } = useNuxtApp();
   const api = $api as AxiosInstance;
 
@@ -11,7 +14,20 @@ export const handleEndpoints = () => {
     return { state, isLoading, execute };
   };
 
-  const handleLogin = (username: string, password: string) => useRequest(() => api.post("/api/login/", { username, password }).then((res) => res.data));
+  const handleLogin = (username: string, password: string) =>
+    useRequest(() =>
+      api
+        .post("/api/login/", { username, password })
+        .then((res) => {
+          const response = res.data;
+          notifictionStore.showNotification("success", "You have successfully logged in!");
+          return response;
+        })
+        .catch((error) => {
+          notifictionStore.showNotification("error", error.response.data ?? "Error occured while logging in.");
+          return error.response;
+        }),
+    );
 
   return {
     handleLogin,
