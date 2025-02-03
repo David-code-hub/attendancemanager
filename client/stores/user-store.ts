@@ -1,0 +1,18 @@
+import { defineStore } from "pinia";
+import type { User } from "~/types/app";
+
+export const useUserStore = defineStore("user", {
+  state: () => ({
+    access_token: "",
+    refresh_token: "",
+    user: {} as User,
+  }),
+
+  actions: {
+    saveUserDetails(access_token: string, refresh_token: string, username: string) {
+      this.access_token = access_token;
+      this.refresh_token = refresh_token;
+      this.user.username = username;
+    },
+  },
+});

@@ -23,7 +23,7 @@
           </div>
         </div>
         <div>
-          <button type="submit" @click.prevent="handleUserLogin" class="submit-button">
+          <button type="submit" :disabled="isLoading || !loginForm.password || !loginForm.username" @click.prevent="handleUserLogin" class="submit-button">
             <Icon v-if="isLoading" name="svg-spinners:180-ring-with-bg" class="size-5" />
             <span v-else>Sign in</span>
           </button>

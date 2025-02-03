@@ -6,3 +6,8 @@ export interface Notification {
   showMessage: Boolean;
   duration?: number;
 }
+
+export interface User {
+  username: string;
+  email: string;
+}
