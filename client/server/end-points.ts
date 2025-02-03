@@ -1,13 +1,18 @@
 import { useNuxtApp } from "nuxt/app";
+import { useRouter } from "vue-router";
 import { useAsyncState } from "@vueuse/core";
-import type { AxiosInstance } from "axios";
+import type { AxiosError, AxiosResponse } from "axios";
+
 import { useNotificationStore } from "~/stores/notifiction-store";
+import { useUserStore } from "~/stores/user-store";
+
+import type { LoginResponse, APIError, User } from "~/types/app";
 
 export const handleEndpoints = () => {
   const notificationStore = useNotificationStore();
-
+  const userStore = useUserStore();
+  const router = useRouter();
   const { $api } = useNuxtApp();
-  const api = $api as AxiosInstance;
 
   const useRequest = <T>(fn: () => Promise<T>) => {
     const { state, isLoading, execute } = useAsyncState(fn, {} as T, { immediate: false });
@@ -16,15 +21,22 @@ export const handleEndpoints = () => {
 
   const handleLogin = (username: string, password: string) =>
     useRequest(() =>
-      api
+      $api
         .post("/api/login/", { username, password })
-        .then((res) => {
+        .then((res: AxiosResponse<LoginResponse>) => {
           const response = res.data;
+          userStore.saveUserDetails(response.access, response.refresh, {
+            username: response.username,
+            email: response.email,
+          } as User);
           notificationStore.showNotification("success", "You have successfully logged in!");
+          // set auth headers
+          $api.defaults.headers.common["Authorization"] = `Bearer ${response.access}`;
+          router.push("/home");
           return response;
         })
-        .catch((error) => {
-          notificationStore.showNotification("error", error.response.data?.detail ?? "Error occured while logging in.");
+        .catch((error: AxiosError) => {
+          notificationStore.showNotification("error", (error?.response?.data as APIError).detail ?? "Error occured while logging in.");
           return error.response;
         }),
     );

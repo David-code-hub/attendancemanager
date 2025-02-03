@@ -9,10 +9,11 @@ export const useUserStore = defineStore("user", {
   }),
 
   actions: {
-    saveUserDetails(access_token: string, refresh_token: string, username: string) {
+    saveUserDetails(access_token: string, refresh_token: string, user: User) {
       this.access_token = access_token;
       this.refresh_token = refresh_token;
-      this.user.username = username;
+      this.user = user;
     },
   },
+  persist: true,
 });
