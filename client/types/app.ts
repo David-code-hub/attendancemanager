@@ -11,3 +11,15 @@ export interface User {
   username: string;
   email: string;
 }
+
+export interface LoginResponse {
+  access: string;
+  refresh: string;
+  username: string;
+  email: string;
+}
+
+export interface APIError {
+  detail: string;
+  status_code?: number;
+}
