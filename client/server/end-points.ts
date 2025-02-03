@@ -24,7 +24,7 @@ export const handleEndpoints = () => {
           return response;
         })
         .catch((error) => {
-          notificationStore.showNotification("error", error.response.data ?? "Error occured while logging in.");
+          notificationStore.showNotification("error", error.response.data?.detail ?? "Error occured while logging in.");
           return error.response;
         }),
     );
