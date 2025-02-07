@@ -1,11 +1,6 @@
 <template>
-  <div class="flex items-center justify-center">
-    <div class="max-w-[300px] rounded-lg p-5 shadow">
-      <h1>home page</h1>
-      <p class="text-base">
-        {{ userStore.user.email }}
-      </p>
-    </div>
+  <div class="mt-10 grid grid-cols-4 items-center justify-center gap-5">
+    <SessionCard v-for="i in 4" />
   </div>
 </template>
 
