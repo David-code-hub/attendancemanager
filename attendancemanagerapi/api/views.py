@@ -2,10 +2,15 @@
 from rest_framework import viewsets
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from .models import StudentGroup
 from .serializers import StudentGroupSerializer
 
+
+# simplwjwt : https://django-rest-framework-simplejwt.readthedocs.io/en/latest/
+# rest_framework auth : https://www.django-rest-framework.org/api-guide/authentication/
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
@@ -26,3 +31,7 @@ class CustomTokenObtainPairView(TokenObtainPairView):
 class StudentGroupViewSet(viewsets.ModelViewSet):
     queryset = StudentGroup.objects.all()
     serializer_class = StudentGroupSerializer
+    # requires jwt
+    authentication_classes = [JWTAuthentication]
+    # only auth users can access
+    permission_classes = [IsAuthenticated]
