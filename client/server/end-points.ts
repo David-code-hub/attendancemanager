@@ -14,12 +14,8 @@ export const handleEndpoints = () => {
   const { $api } = useNuxtApp();
   const router = useRouter();
 
-  const handleAuth = () => {
-    $api.defaults.headers.common["Authorization"] = `Bearer ${useUserStore().access_token}`;
-  };
-
-  const handleLogout = (error: string) => {
-    if (error === "Authentication credentials were not provided." || error === "Given token not valid for any token type") {
+  const handleLogout = (status: number | undefined) => {
+    if (status === 401) {
       userStore.clearUserStore();
       router.push("/");
     }
@@ -40,9 +36,8 @@ export const handleEndpoints = () => {
             username: response.username,
             email: response.email,
           } as User);
+          console.log("user store :", userStore.access_token);
           notificationStore.showNotification("success", "You have successfully logged in!");
-          // set auth headers
-          handleAuth();
           router.push("/home");
           return response;
         })
@@ -63,7 +58,7 @@ export const handleEndpoints = () => {
         })
         .catch((error: AxiosError) => {
           notificationStore.showNotification("error", (error?.response?.data as APIError).detail ?? "Error occured while fetching students in.");
-          handleLogout((error?.response?.data as APIError).detail);
+          handleLogout(error?.response?.status);
           return error.response;
         }),
     );
