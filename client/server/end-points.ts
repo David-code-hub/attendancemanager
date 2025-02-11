@@ -11,8 +11,19 @@ import type { LoginResponse, APIError, User } from "~/types/app";
 export const handleEndpoints = () => {
   const notificationStore = useNotificationStore();
   const userStore = useUserStore();
-  const router = useRouter();
   const { $api } = useNuxtApp();
+  const router = useRouter();
+
+  const handleAuth = () => {
+    $api.defaults.headers.common["Authorization"] = `Bearer ${useUserStore().access_token}`;
+  };
+
+  const handleLogout = (error: string) => {
+    if (error === "Authentication credentials were not provided." || error === "Given token not valid for any token type") {
+      userStore.clearUserStore();
+      router.push("/");
+    }
+  };
 
   const useRequest = <T>(fn: () => Promise<T>) => {
     const { state, isLoading, execute } = useAsyncState(fn, {} as T, { immediate: false });
@@ -31,7 +42,7 @@ export const handleEndpoints = () => {
           } as User);
           notificationStore.showNotification("success", "You have successfully logged in!");
           // set auth headers
-          $api.defaults.headers.common["Authorization"] = `Bearer ${response.access}`;
+          handleAuth();
           router.push("/home");
           return response;
         })
@@ -41,7 +52,24 @@ export const handleEndpoints = () => {
         }),
     );
 
+  const handleGetStudentsGroup = () =>
+    useRequest(() =>
+      $api
+        .get("/api/student-groups/")
+        .then((res: AxiosResponse<any>) => {
+          const response = res.data;
+          console.log("students groups :", response);
+          return response;
+        })
+        .catch((error: AxiosError) => {
+          notificationStore.showNotification("error", (error?.response?.data as APIError).detail ?? "Error occured while fetching students in.");
+          handleLogout((error?.response?.data as APIError).detail);
+          return error.response;
+        }),
+    );
+
   return {
     handleLogin,
+    handleGetStudentsGroup,
   };
 };
