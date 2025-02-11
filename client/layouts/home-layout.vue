@@ -3,11 +3,14 @@
     <nav class="flex items-center justify-between p-4 text-black shadow">
       <p>Attendance Manager</p>
       <div class="flex items-center gap-2">
-        <div class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100">{{ user.username[0].toUpperCase() }}</div>
-        <div>
+        <router-link class="submit-button items-center gap-2" to="/">
+          <Icon name="iconamoon:sign-plus-circle-fill" class="size-5" />
+          Create New Session</router-link
+        >
+        <!-- <div>
           <p class="text-base leading-4">{{ user.username }}</p>
           <p class="text-sm text-gray-400">{{ user.email }}</p>
-        </div>
+        </div> -->
       </div>
     </nav>
     <main class="p-6">
