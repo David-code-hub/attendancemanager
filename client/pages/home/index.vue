@@ -5,12 +5,24 @@
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from "#imports";
+import { handleEndpoints } from "~/server/end-points";
 
-const userStore = useUserStore();
+const isLoading = ref(false);
+const { handleGetStudentsGroup } = handleEndpoints();
+
+const handleGetStudents = async () => {
+  const studentGroupState = handleGetStudentsGroup();
+  isLoading.value = true;
+  await studentGroupState.execute();
+  isLoading.value = studentGroupState.isLoading.value;
+};
 
 definePageMeta({
   layout: "home-layout",
+});
+
+onMounted(() => {
+  handleGetStudents();
 });
 </script>
 

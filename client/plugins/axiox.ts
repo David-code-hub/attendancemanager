@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { Axios, AxiosInstance } from "axios";
+import type { AxiosInstance } from "axios";
 
 export default defineNuxtPlugin((nuxtApp) => {
   const api = axios.create({
