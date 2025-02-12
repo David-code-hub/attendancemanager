@@ -18,7 +18,6 @@ export const useUserStore = defineStore("user", {
       this.access_token = "";
       this.refresh_token = "";
       this.user = { username: "", email: "" };
-      console.log("access token :", this.access_token);
     },
   },
   persist: true,
