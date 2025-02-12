@@ -18,8 +18,9 @@
           <div class="flex items-center justify-between">
             <label for="password" class="block text-sm/6 font-medium text-gray-900">Password</label>
           </div>
-          <div class="mt-2">
-            <input type="password" name="password" v-model="loginForm.password" id="password" autocomplete="current-password" required="true" class="input-field" />
+          <div class="relative mt-2 flex items-center">
+            <input :type="showPassword ? 'text' : 'password'" name="password" v-model="loginForm.password" id="password" autocomplete="current-password" required="true" class="input-field" />
+            <Icon :name="showPassword ? 'iconamoon:eye-light' : 'iconamoon:eye-off'" class="absolute right-2 size-5 cursor-pointer" @click="showPassword = !showPassword" />
           </div>
         </div>
         <div>
@@ -38,6 +39,7 @@
 import { handleEndpoints } from "~/server/end-points";
 
 const isLoading = ref(false);
+const showPassword = ref(false);
 const { handleLogin } = handleEndpoints();
 const loginForm = reactive({
   username: "",
