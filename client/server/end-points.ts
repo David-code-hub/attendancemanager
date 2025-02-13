@@ -63,8 +63,27 @@ export const handleEndpoints = () => {
         }),
     );
 
+  const handleCreateStudentsGroup = (name: string) =>
+    useRequest(() =>
+      $api
+        .post("/api/student-groups/", {
+          name: name,
+        })
+        .then((res: AxiosResponse<any>) => {
+          const response = res.data;
+          console.log("create students groups :", response);
+          return response;
+        })
+        .catch((error: AxiosError) => {
+          notificationStore.showNotification("error", (error?.response?.data as APIError).detail ?? "Error occured while fetching students in.");
+          handleLogout(error?.response?.status);
+          return error.response;
+        }),
+    );
+
   return {
     handleLogin,
     handleGetStudentsGroup,
+    handleCreateStudentsGroup,
   };
 };
