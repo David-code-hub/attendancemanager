@@ -7,14 +7,15 @@ export const useNotificationStore = defineStore("notification", {
   }),
 
   actions: {
-    showNotification(type: NotificationTypes, message: string, duration = 3000) {
+    showNotification(type: NotificationTypes, message: string) {
       this.notification = {
         type: type,
         message: message,
         showMessage: true,
       };
+
       // remove after duration
-      //   setTimeout(() => this.removeNotification(id), duration);
+      setTimeout(() => (this.notification.showMessage = false), 3000);
     },
   },
 });
