@@ -4,6 +4,11 @@
     <button class="submit-button w-fit border border-black bg-white text-black">Search</button>
   </div>
 
+  <select name="student-group" id="student-group">
+    <option v-for="group in studentGroups" :key="group?.id" :value="group?.name">
+      {{ group?.name }}
+    </option>
+  </select>
   <!-- <form>
     <input class="input-field w-80" placeholder="Enter name..." v-model="name" />
     <button type="submit" @click.prevent="handleCreateStudents" class="submit-button w-fit border border-black bg-white text-black">Submit</button>
@@ -21,12 +26,15 @@ import { handleEndpoints } from "~/server/end-points";
 
 const isLoading = ref(false);
 const name = ref("");
+const studentGroups = ref([] as any);
 const { handleGetStudentsGroup, handleCreateStudentsGroup } = handleEndpoints();
 
 const handleGetStudents = async () => {
   const studentGroupState = handleGetStudentsGroup();
+
   isLoading.value = true;
   await studentGroupState.execute();
+  studentGroups.value = studentGroupState.state.value;
   isLoading.value = studentGroupState.isLoading.value;
 };
 
