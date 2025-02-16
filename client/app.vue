@@ -6,3 +6,8 @@
     <AppNotificationHandler />
   </div>
 </template>
+<script setup lang="ts">
+import { provideUseId } from "@headlessui/vue";
+
+provideUseId(() => useId());
+</script>
