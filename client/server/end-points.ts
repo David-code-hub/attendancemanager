@@ -71,7 +71,7 @@ export const handleEndpoints = () => {
         })
         .then((res: AxiosResponse<any>) => {
           const response = res.data;
-          console.log("create students groups :", response);
+          notificationStore.showNotification("success", "Successfully created group!");
           return response;
         })
         .catch((error: AxiosError) => {
