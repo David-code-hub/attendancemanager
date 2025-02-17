@@ -27,16 +27,15 @@
                   </span>
                 </li>
               </ListboxOption>
+              <div class="px-2">
+                <CreateStudentGroup />
+              </div>
             </ListboxOptions>
           </transition>
         </div>
       </Listbox>
     </div>
   </div>
-  <!-- <form>
-    <input class="input-field w-80" placeholder="Enter name..." v-model="name" />
-    <button type="submit" @click.prevent="handleCreateStudents" class="submit-button w-fit border border-black bg-white text-black">Submit</button>
-  </form> -->
 
   <AppNoDataPlaceholder />
 
