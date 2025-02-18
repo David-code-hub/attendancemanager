@@ -2,7 +2,7 @@
   <div class="inset-0 flex items-center justify-center">
     <button type="button" @click="openModal" class="submit-button items-center gap-2">
       <Icon name="iconamoon:sign-plus-circle-fill" class="size-5" />
-      Create Student Group
+      <!-- Create Student Group -->
     </button>
   </div>
   <TransitionRoot appear :show="isOpen" as="template">
